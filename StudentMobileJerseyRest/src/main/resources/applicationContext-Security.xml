@@ -1,0 +1,41 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+	<global-method-security pre-post-annotations="enabled">
+		<!-- AspectJ pointcut expression that locates our "post" method and applies 
+			security that way <protect-pointcut expression="execution(* bigbank.*Service.post*(..))" 
+			access="ROLE_TELLER"/> -->
+	</global-method-security>
+
+	<http use-expressions="true" create-session="ifRequired" >
+		
+		<!-- the call from intermec.com to create search record -->
+		<intercept-url pattern="/rest/intermec/**" access="permitAll" />
+		
+		<!-- will be all the report URLs & report creation URLs -->
+		<intercept-url pattern="/rest/collectionService/**" access="isAuthenticated()"  />
+		<intercept-url pattern="/rest/reportGeneratorService/**" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/reportMasterService/**" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/user/logout" access="isAuthenticated()" />
+		<intercept-url pattern="/rest/user/forgotPassword/updateTemporaryPassword" access="isAuthenticated()" />
+		
+		<!-- permitAll would have login & sendTempPassword URLs -->	
+		<intercept-url pattern="/rest/user/permitAll/login" access="permitAll" />
+		<intercept-url pattern="/rest/user/forgotPassword/permitAll/sendTemporaryPassword" access="permitAll" />
+		
+		<form-login />
+		<logout delete-cookies="JSESSIONID" invalidate-session="true" />
+		<remember-me  />
+		<!-- Uncomment to enable X509 client authentication support <x509 /> -->
+		<!-- Uncomment to limit the number of sessions a user can have -->
+		<session-management>
+			<concurrency-control max-sessions="1" 
+				error-if-maximum-exceeded="true"  />
+		</session-management>
+
+	</http>
+
+</beans:beans>

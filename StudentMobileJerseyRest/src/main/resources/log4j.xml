@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %d{dd MMM yyyy HH:mm:ss,SSS} - %c - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="INFO" />
+			<param name="levelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<appender name="stdoutLogFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- <param name="append" value="true" /> -->
+		<param name="file" value="${pom.ESReports.Rest.Stdout.Logs}" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %d{dd MMM yyyy HH:mm:ss,SSS} - %c - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="DEBUG" />
+			<param name="levelMax" value="INFO" />
+		</filter>
+	</appender>
+
+	<appender name="errorLogFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- <param name="append" value="true" /> <param name="encoding" value="UTF-8" 
+			/> -->
+		<param name="file" value="${pom.ESReports.Rest.Error.Logs}" />
+		<param name="datePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %d{dd MMM yyyy HH:mm:ss,SSS} - %c - %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="levelMin" value="WARN" />
+			<param name="levelMax" value="FATAL" />
+		</filter>
+	</appender>
+
+<!-- 	<appender name="EMAIL" class="org.apache.log4j.net.SMTPAppender">
+		<param name="BufferSize" value="${pom.mail.error.BufferSize}" />
+		<param name="SMTPHost" value="${pom.mail.host}" />
+		<param name="SMTPPort" value="${pom.mail.smtp.port}" />
+		<param name="SMTPUsername" value="${pom.mail.error.SMTPUsername}" />
+		<param name="SMTPPassword" value="${pom.mail.errorSMTPPassword}" />
+		<param name="SMTPProtocol" value="${pom.mail.errorSMTPProtocal}" />
+		<param name="From" value="${pom.mail.error.From}" />
+		<param name="To" value="${pom.mail.error.To}" />
+		<param name="cc" value="${pom.mail.cc}" />
+		<param name="SMTPDebug" value="${pom.mail.debug}" />
+		<param name="EnableSsl" value="${pom.mail.error.EnableSSL}" />
+		<param name="subject"
+			value="${pom.profile.id} ESReports Error Notification Message" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{ISO8601}]%n%n%-5p%n%n%c%n%n%m%n%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="ERROR" />
+			<param name="LevelMax" value="FATAL" />
+		</filter>
+	</appender> -->
+
+	<!-- <appender name="severeEmail" class="org.apache.log4j.net.SMTPAppender"> 
+		<param name="BufferSize" value="${pom.mail.error.BufferSize}" /> <param name="SMTPHost" 
+		value="${pom.mail.host}" /> <param name="SMTPPort" value="${pom.mail.smtp.port}" 
+		/> <param name="SMTPUsername" value="${pom.mail.error.SMTPUsername}" /> <param 
+		name="SMTPPassword" value="${pom.mail.errorSMTPPassword}" /> <param name="SMTPProtocol" 
+		value="${pom.mail.errorSMTPProtocal}" /> <param name="From" value="${pom.mail.error.From}" 
+		/> <param name="To" value="${pom.mail.error.To}" /> <param name="cc" value="${pom.mail.cc}" 
+		/> <param name="SMTPDebug" value="${pom.mail.debug}" /> <param name="subject" 
+		value="${pom.profile.id} ESReports Severe Error Notification Message" /> 
+		<layout class="org.apache.log4j.PatternLayout"> <param name="ConversionPattern" 
+		value="[%d{ISO8601}]%n%n%-5p%n%n%c%n%n%m%n%n" /> </layout> <filter class="com.intermec.es.reports.rest.loggingutils.SevereLevelFilter"> 
+		<param name="levelToMatch" value="SEVERE" /> <param name="acceptOnMatch" 
+		value="true" /> </filter> </appender> -->
+
+<!-- 	<appender name="EMAIL_ASYNC" class="org.apache.log4j.AsyncAppender">
+		<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+		<appender-ref ref="EMAIL" />
+	</appender>
+	<plugin name="julreceiver" class="org.apache.log4j.jul.JULReceiver" /> -->
+
+	<!-- Application logger -->
+
+	<!-- 3rdparty Loggers -->
+	<logger name="org.hibernate">
+		<level value="DEBUG" />
+	</logger>
+
+	<logger name="com.sun.jersey">
+		<level value="error" />
+	</logger>
+
+	<logger name="org.springframework.jdbc">
+		<level value="error" />
+	</logger>
+
+	<logger name="org.springframework.transaction">
+		<level value="error" />
+	</logger>
+
+	<logger name="org.springframework.beans">
+		<level value="error" />
+	</logger>
+
+	<logger name="org.springframework.context">
+		<level value="error" />
+	</logger>
+
+	<logger name="org.springframework.security">
+		<level value="error" />
+	</logger>
+
+	<logger name="org.springframework.cache">
+		<level value="error" />
+	</logger>
+	
+	<logger name="net.sf.ehcache">
+		<level value="error" />
+	</logger>
+	
+	<!-- Root Logger -->
+	<root>
+		<appender-ref ref="console" />
+		<appender-ref ref="stdoutLogFileAppender" />
+		<appender-ref ref="errorLogFileAppender" />
+	</root>
+
+</log4j:configuration>

@@ -1,0 +1,8 @@
+insert into test.sm_clientmaster(clientId, clientName, clientCode, CREATEDTS, updatedTS) values(1, 'Test Client1', 'ABCD', sysdate(), sysdate());
+insert into test.sm_clientmaster(clientId, clientName, clientCode, CREATEDTS, updatedTS) values(2, 'Test Client2', 'WXYZ', sysdate(), sysdate());
+INSERT INTO test.sm_usermaster (userId, accountNonExpired, accountNonLocked, credentialsNonExpired, email, enabled, name, password, username, createdTS, updatedTS, tempPasswordIssued, clientId) VALUES (1, 'Y', 'Y', 'Y', 'esreports.ta1@gmail.com', 'Y', 'Test User1', 'dd750dbfbe433f333793ccfcd00c2e89486e560d41ceab9d4555ac26d3e73e40', 'user1', sysdate(), sysdate(), 'N', 1);
+INSERT INTO test.sm_usermaster (userId, accountNonExpired, accountNonLocked, credentialsNonExpired, email, enabled, name, password, username, createdTS, updatedTS, tempPasswordIssued, clientId) VALUES (2, 'Y', 'Y', 'Y', 'esreports.ta2@gmail.com', 'Y', 'Test User2', '9837bc56772c69b9c5604b5798c0264134d9cb54855d32a886d18827d68089b0', 'user2', sysdate(), sysdate(), 'N', 2);
+INSERT INTO test.sm_usermaster (userId, accountNonExpired, accountNonLocked, credentialsNonExpired, email, enabled, name, password, username, createdTS, updatedTS, tempPasswordIssued, clientId) VALUES (3, 'Y', 'Y', 'Y', 'esreports.ta3@gmail.com', 'Y', 'Test User3', '9837bc56772c69b9c5604b5798c0264134d9cb54855d32a886d18827d68089b0', 'user3', sysdate(), sysdate(), 'N', 2);
+INSERT INTO test.sm_userauthoritymaster(userAuthorityId, createdTS, updatedTS, authority, userID) VALUES(1,sysdate(),sysdate(),'SUPER_USER',1);
+INSERT INTO test.sm_userauthoritymaster(userAuthorityId, createdTS, updatedTS, authority, userID) VALUES(2,sysdate(),sysdate(),'CLIENT_ADMIN',2);
+

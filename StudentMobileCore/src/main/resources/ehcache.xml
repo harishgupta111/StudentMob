@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" name="cacheManager"
+	updateCheck="false" monitoring="autodetect" dynamicConfig="true">
+
+	<diskStore path="${pom.student.app.cacheDir}" />
+
+	<defaultCache eternal="false" timeToIdleSeconds="120"
+		timeToLiveSeconds="120" diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true" />
+
+	<cache name="org.hibernate.cache.internal.StandardQueryCache"
+		maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="3600"
+		timeToLiveSeconds="3600" copyOnRead="true">
+	</cache>
+
+	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+		maxElementsInMemory="10000" eternal="true" copyOnRead="true">
+	</cache>
+
+	<cache name="SM_UserMaster" eternal="false" maxElementsInMemory="10000"
+		overflowToDisk="true" diskPersistent="true" timeToIdleSeconds="0"
+		timeToLiveSeconds="300" memoryStoreEvictionPolicy="LRU" copyOnRead="true">
+	</cache>
+
+	<cache name="SM_UserAuthorityMaster" eternal="false"
+		maxElementsInMemory="10000" overflowToDisk="true" diskPersistent="true"
+		timeToIdleSeconds="0" timeToLiveSeconds="300"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true">
+	</cache>
+
+	<cache name="SM_ClientMaster" eternal="false"
+		maxElementsInMemory="10000" overflowToDisk="true" diskPersistent="true"
+		timeToIdleSeconds="0" timeToLiveSeconds="300"
+		memoryStoreEvictionPolicy="LRU" copyOnRead="true">
+	</cache>
+
+
+</ehcache>
